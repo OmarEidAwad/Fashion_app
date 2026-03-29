@@ -20,7 +20,7 @@ class CustomSelectionBar extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "Select color",
+                  "Select color ",
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
                 SvgPicture.asset("assets/svgs/select.svg"),
