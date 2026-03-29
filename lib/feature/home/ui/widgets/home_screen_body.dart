@@ -49,7 +49,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
             ),
           ),
           verticalSpace(12),
-          SizedBox(height: 100.h, child: CategoriesListView()),
+          SizedBox(height: 120.h, child: CategoriesListView()),
           // Divider(),
 
           // verticalSpace(20),

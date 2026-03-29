@@ -6,7 +6,8 @@ class AnimationLine extends StatefulWidget {
   _AnimationLineState createState() => _AnimationLineState();
 }
 
-class _AnimationLineState extends State<AnimationLine> with SingleTickerProviderStateMixin {
+class _AnimationLineState extends State<AnimationLine>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
   @override
@@ -37,12 +38,15 @@ class _AnimationLineState extends State<AnimationLine> with SingleTickerProvider
               return LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                stops: [_controller.value , 3.0 , 4.0],
-                colors: [Colors.transparent,Colors.black ,Colors.black],
+                stops: [_controller.value, 2.0, 4.0],
+                colors: [Colors.transparent, Colors.black, Colors.black],
               ).createShader(bounds);
             },
             blendMode: BlendMode.dstIn,
-            child: SvgPicture.asset('assets/logo/line.svg', color: Colors.black87),
+            child: SvgPicture.asset(
+              'assets/logo/line.svg',
+              color: Colors.black87,
+            ),
           );
         },
       ),

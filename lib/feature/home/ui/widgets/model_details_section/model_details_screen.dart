@@ -96,7 +96,7 @@ class _ModelDetailesScreenState extends State<ModelDetailesScreen> {
             },
             child: DraggableScrollableSheet(
               initialChildSize: .18,
-              minChildSize: 0.05,
+              minChildSize: 0.06,
               maxChildSize: 0.8,
               builder: (context, scrollController) {
                 return Container(
