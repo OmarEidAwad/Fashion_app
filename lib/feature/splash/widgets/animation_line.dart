@@ -42,7 +42,7 @@ class _AnimationLineState extends State<AnimationLine> with SingleTickerProvider
               ).createShader(bounds);
             },
             blendMode: BlendMode.dstIn,
-            child: SvgPicture.asset('assets/logo/line.svg', color: Color(0xff853674)),
+            child: SvgPicture.asset('assets/logo/line.svg', color: Colors.black87),
           );
         },
       ),

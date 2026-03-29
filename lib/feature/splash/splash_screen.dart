@@ -31,7 +31,7 @@ class _SplashState extends State<Splash> {
             child: SvgPicture.asset(
               "assets/logo/logo.svg",
               width: 188,
-              color: Color(0xff853674),
+              color: Colors.black87,
             ),
           ),
           verticalSpace(10),

@@ -64,7 +64,7 @@ class _ModelDetailesScreenState extends State<ModelDetailesScreen> {
                         child: Stack(
                           children: [
                             Positioned(
-                              left: 20,
+                              left: 0,
                               right: 0,
                               top: 500.h * (1 - (sheetSize - 0.05)),
                               child: Image.asset("assets/images/shadow.png"),

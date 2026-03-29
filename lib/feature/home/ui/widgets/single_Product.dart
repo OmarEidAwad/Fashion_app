@@ -14,7 +14,7 @@ class singleProduct extends StatelessWidget {
         Positioned(
           left: 0,
           right: 0,
-          top: 0.h,
+          top: 120.h,
 
           /// bottom: 0,
           child: Image.asset("assets/images/shadow.png"),
