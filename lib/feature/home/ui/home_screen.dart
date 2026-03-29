@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
         title: Center(child: Text("Runway", style: TextStyles.font18BlackBold)),
         centerTitle: true,

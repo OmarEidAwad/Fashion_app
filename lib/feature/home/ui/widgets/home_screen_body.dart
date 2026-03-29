@@ -38,7 +38,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
           Container(
             decoration: BoxDecoration(boxShadow: [BoxShadow()]),
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.7.h,
+            height: MediaQuery.of(context).size.height * 0.63.h,
             child: VideoPlayer(_controller),
           ),
           verticalSpace(12),
@@ -49,10 +49,9 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
             ),
           ),
           verticalSpace(12),
-          SizedBox(height:  100.h,
-            child: CategoriesListView()),
+          SizedBox(height: 100.h, child: CategoriesListView()),
           // Divider(),
-      
+
           // verticalSpace(20),
         ],
       ),
