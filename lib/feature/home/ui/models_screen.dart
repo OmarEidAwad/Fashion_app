@@ -7,12 +7,14 @@ class ModelsScreen extends StatelessWidget {
   final String? title;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(title: title ?? ""),
+    return GestureDetector(onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: CustomAppBar(title: title ?? ""),
+        ),
+        body: ModelsScreenBody(),
       ),
-      body: ModelsScreenBody(),
     );
   }
 }

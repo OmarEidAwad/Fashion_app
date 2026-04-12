@@ -9,25 +9,27 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(scrolledUnderElevation: 0,
-        backgroundColor: Colors.white,
-        title: Center(child: Text("Runway", style: TextStyles.font18BlackBold)),
-        centerTitle: true,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 16.0, top: 14),
-          child: FaIcon(
-            FontAwesomeIcons.barsStaggered,
-            color: Colors.black,
-            size: 24,
+    return GestureDetector(onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        appBar: AppBar(scrolledUnderElevation: 0,
+          backgroundColor: Colors.white,
+          title: Center(child: Text("Runway", style: TextStyles.font18BlackBold)),
+          centerTitle: true,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 16.0, top: 14),
+            child: FaIcon(
+              FontAwesomeIcons.barsStaggered,
+              color: Colors.black,
+              size: 24,
+            ),
           ),
+          actions: [
+            FaIcon(FontAwesomeIcons.bell, color: Colors.black, size: 24),
+            horizontalSpace(12),
+          ],
         ),
-        actions: [
-          FaIcon(FontAwesomeIcons.bell, color: Colors.black, size: 24),
-          horizontalSpace(12),
-        ],
+        body: HomeScreenBody(),
       ),
-      body: HomeScreenBody(),
     );
   }
 }
