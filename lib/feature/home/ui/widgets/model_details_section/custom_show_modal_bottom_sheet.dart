@@ -4,7 +4,7 @@ import 'package:fashion/core/theiming/font_weight_helper.dart';
 import 'package:fashion/core/theiming/styles.dart';
 import 'package:fashion/feature/home/data/models/moddel_details_model.dart';
 import 'package:fashion/feature/home/data/models/models_model.dart';
-import 'package:fashion/feature/home/ui/widgets/model_details_section/custom_add_button.dart';
+import 'package:fashion/feature/home/ui/widgets/model_details_section/custom_buy_button.dart';
 import 'package:fashion/feature/home/ui/widgets/model_details_section/custom_data_container.dart';
 import 'package:fashion/feature/home/ui/widgets/model_details_section/custom_selection_bar.dart';
 import 'package:fashion/feature/home/ui/widgets/model_details_section/horizental_model_list_view.dart';
@@ -99,7 +99,6 @@ class _customShowModalBottomSheetState
         ),
         CustomSelectionBar(),
         verticalSpace(20),
-        customAddButton(),
         CustomDataContainer(
           IconName: FontAwesomeIcons.cartShopping,
           title: "Free delivery",
@@ -112,6 +111,9 @@ class _customShowModalBottomSheetState
           haveArrowIcon: false,
         ),
         verticalSpace(12),
+                customBuyButton(),
+        verticalSpace(12),
+
         Text(
           "       About Ptoduct",
           style: TextStyles.font14BlackMedium.copyWith(

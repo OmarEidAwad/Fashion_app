@@ -23,7 +23,7 @@ class OrderSuccessDialog extends StatelessWidget {
               width: 70.w,
               height: 70.h,
               decoration: const BoxDecoration(
-                color: Color(0xffE8F8EE),
+                color: Colors.black87,
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.check, color: Colors.white, size: 40),
@@ -60,6 +60,8 @@ class OrderSuccessDialog extends StatelessWidget {
                 ),
                 onPressed: () {
                   context.pop();
+                  context.pop();
+
                   //  context.pushNamed(AppRoute.homeScreen);
                 },
                 child: const Text(
