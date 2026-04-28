@@ -21,6 +21,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
     _controller = VideoPlayerController.asset("assets/video/video.mp4")
       ..initialize().then((_) {
         setState(() {
+          _controller.setVolume(0);
           _controller.play();
         });
       })
@@ -38,10 +39,10 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
           Container(
             decoration: BoxDecoration(boxShadow: [BoxShadow()]),
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.63.h,
+            height: MediaQuery.of(context).size.height * 0.65.h,
             child: VideoPlayer(_controller),
           ),
-          verticalSpace(12),
+          verticalSpace(16),
           Text(
             "   Categories",
             style: TextStyles.font14BlackMedium.copyWith(
