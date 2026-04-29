@@ -14,43 +14,30 @@ class CategoriesListView extends StatelessWidget {
       CategoriesModel(
         imageAsset: "assets/images/category/Deals.png",
         categoryName: "Deals",
+        categoryId: "deals",
       ),
       CategoriesModel(
         imageAsset: "assets/images/category/Health.png",
         categoryName: "Health",
+        categoryId: "health",
       ),
       CategoriesModel(
         imageAsset: "assets/images/category/Kids.png",
         categoryName: "Kids",
+        categoryId: "kids_baby_girl_newarrivals",
       ),
       CategoriesModel(
         imageAsset: "assets/images/category/Men.png",
         categoryName: "Men",
+        categoryId: "men",
       ),
       CategoriesModel(
         imageAsset: "assets/images/category/Women.png",
         categoryName: "Women",
+        categoryId: "ladies_newarrivals_all",
       ),
-      CategoriesModel(
-        imageAsset: "assets/images/category/Deals.png",
-        categoryName: "Deals",
-      ),
-      CategoriesModel(
-        imageAsset: "assets/images/category/Health.png",
-        categoryName: "Health",
-      ),
-      CategoriesModel(
-        imageAsset: "assets/images/category/Kids.png",
-        categoryName: "Kids",
-      ),
-      CategoriesModel(
-        imageAsset: "assets/images/category/Men.png",
-        categoryName: "Men",
-      ),
-      CategoriesModel(
-        imageAsset: "assets/images/category/Women.png",
-        categoryName: "Women",
-      ),
+  
+      
     ];
 
     return ListView.builder(
@@ -62,9 +49,11 @@ class CategoriesListView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: GestureDetector(
             onTap: () {
+              // نضيف ال data from api
+              
               context.pushNamed(
                 AppRoute.modelsScreen,
-                extra: categoriesData[index].categoryName,
+                extra: categoriesData[index],
               );
             },
             child: Column(
