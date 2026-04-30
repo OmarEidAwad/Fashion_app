@@ -22,52 +22,11 @@ class _ModelsScreenBodyState extends State<ModelsScreenBody> {
   @override
   List<bool> favoriteStatus = [];
   void initState() {
+    context.read<CategoryDataCubit>().getCategoryData(widget.categoryId);
     super.initState();
-    favoriteStatus = List.generate(modelsList.length, (index) => false);
   }
 
-  List<ModelsModel> modelsList = [
-    ModelsModel(
-      imageAsset: "assets/images/models/model1.png",
-      price: " \$30",
-      name: "Gray coat and white T-sh..",
-    ),
-    ModelsModel(
-      imageAsset: "assets/images/models/model2.png",
-      price: " \$25",
-      name: "top man Black",
-    ),
-    ModelsModel(
-      imageAsset: "assets/images/models/model3.png",
-      price: " \$50",
-      name: "top man Black with trouser..",
-    ),
-    ModelsModel(
-      imageAsset: "assets/images/models/model4.png",
-      price: " \$40",
-      name: "Classic Tailored Fit Men's Dress Shirt",
-    ),
-    ModelsModel(
-      imageAsset: "assets/images/models/model1.png",
-      price: " \$30",
-      name: "Gray coat and white T-sh..",
-    ),
-    ModelsModel(
-      imageAsset: "assets/images/models/model2.png",
-      price: " \$25",
-      name: "top man Black",
-    ),
-    ModelsModel(
-      imageAsset: "assets/images/models/model3.png",
-      price: " \$50",
-      name: "top man Black with trouser..",
-    ),
-    ModelsModel(
-      imageAsset: "assets/images/models/model4.png",
-      price: " \$40",
-      name: "Classic Tailored Fit Men's Dress Shirt",
-    ),
-  ];
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +52,7 @@ class _ModelsScreenBodyState extends State<ModelsScreenBody> {
                             crossAxisCount: 2,
                             childAspectRatio: 0.6,
                           ),
-                      itemCount: modelsList.length,
+                      itemCount: data.plpList!.productList!.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -105,19 +64,19 @@ class _ModelsScreenBodyState extends State<ModelsScreenBody> {
                                   context.pushNamed(
                                     AppRoute.modelsDetails,
                                     extra: ModelDetailsModel(
-                                      allModelsModel: modelsList,
+                                      allModelsModel: data.plpList!.productList!,
                                       currentListIndex: index,
                                     ),
                                   );
                                 },
                                 child: singleProduct(
-                                  modelDetails: modelsList[index],
+                                  modelDetails: data.plpList!.productList![index],
                                 ),
                               ),
                             ),
                             verticalSpace(4),
                             Text(
-                              "    ${modelsList[index].name}",
+                              "    ${data.plpList!.productList![index].productName}",
                               maxLines: 1,
 
                               overflow: TextOverflow.ellipsis,
@@ -126,18 +85,20 @@ class _ModelsScreenBodyState extends State<ModelsScreenBody> {
                             verticalSpace(2),
                             Row(
                               children: [
-                                Text("   ${modelsList[index].price}"),
+                                Text("   ${data.plpList!.productList![index].prices?.first.price.toString()?? 'N/A'} \$"),
                                 Spacer(),
                                 IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      favoriteStatus[index] =
-                                          !favoriteStatus[index];
+                                      favoriteStatus[0] =
+                                          !favoriteStatus[0];
                                     });
                                   },
-                                  icon: favoriteStatus[index]
-                                      ? Icon(Icons.favorite, color: Colors.red)
-                                      : Icon(Icons.favorite_border_outlined),
+                                  icon:
+                                  // favoriteStatus[0]     
+                                    //  ? Icon(Icons.favorite, color: Colors.red)
+                                     // : 
+                                      Icon(Icons.favorite_border_outlined),
                                 ),
                               ],
                             ),

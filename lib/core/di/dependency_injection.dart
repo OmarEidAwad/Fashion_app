@@ -11,7 +11,7 @@ Future<void> setupGetIt()async{
   
  
 Dio dio = DioFactory.getDio();
-  getIt.registerLazySingleton<Dio>(() => dio); // Register Dio explicitly
+  getIt.registerLazySingleton<Dio>(() => dio);
    getIt.registerLazySingleton<ApiService>(() => ApiService(dio));
     debugPrint('Dio and ApiService registered');
   

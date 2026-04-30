@@ -13,13 +13,13 @@ class CategoriesListView extends StatelessWidget {
     List<CategoriesModel> categoriesData = [
       CategoriesModel(
         imageAsset: "assets/images/category/Deals.png",
-        categoryName: "Deals",
-        categoryId: "deals",
+        categoryName: "Sports",
+        categoryId: "sportswear_women_activity_hiking_accessories",
       ),
       CategoriesModel(
         imageAsset: "assets/images/category/Health.png",
-        categoryName: "Health",
-        categoryId: "health",
+        categoryName: "Beauty",
+        categoryId: "beauty_newarrivals_all",
       ),
       CategoriesModel(
         imageAsset: "assets/images/category/Kids.png",
@@ -29,7 +29,7 @@ class CategoriesListView extends StatelessWidget {
       CategoriesModel(
         imageAsset: "assets/images/category/Men.png",
         categoryName: "Men",
-        categoryId: "men",
+        categoryId: "men_newarrivals_all",
       ),
       CategoriesModel(
         imageAsset: "assets/images/category/Women.png",

@@ -9,7 +9,7 @@ class CategoryDataCubit extends Cubit<CategoryDataState> {
   CategoryDataCubit(this._repository)
     : super(const CategoryDataState.initial());
 
-  Future<void> searchVideos(String keyword) async {
+  Future<void> getCategoryData(String keyword) async {
     emit(const CategoryDataState.loading());
     try {
       final data = await _repository.getCategoryData(keyword);

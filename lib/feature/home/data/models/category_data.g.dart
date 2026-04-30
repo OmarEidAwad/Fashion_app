@@ -8,18 +8,18 @@ part of 'category_data.dart';
 
 _CategoryData _$CategoryDataFromJson(Map<String, dynamic> json) =>
     _CategoryData(
-      lang: json['lang'] as String,
-      page: (json['page'] as num).toInt(),
-      pageSize: (json['pageSize'] as num).toInt(),
-      country: json['country'] as String,
+      lang: json['lang'] as String?,
+      page: (json['page'] as num?)?.toInt(),
+      pageSize: (json['pageSize'] as num?)?.toInt(),
+      country: json['country'] as String?,
       requestDateTime: json['requestDateTime'] as String?,
       responseSource: json['responseSource'] as String?,
       pagination: json['pagination'] == null
           ? null
           : Pagination.fromJson(json['pagination'] as Map<String, dynamic>),
-      productList: (json['productList'] as List<dynamic>?)
-          ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      plpList: json['plpList'] == null
+          ? null
+          : PlpList.fromJson(json['plpList'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CategoryDataToJson(_CategoryData instance) =>
@@ -31,24 +31,21 @@ Map<String, dynamic> _$CategoryDataToJson(_CategoryData instance) =>
       'requestDateTime': instance.requestDateTime,
       'responseSource': instance.responseSource,
       'pagination': instance.pagination,
-      'productList': instance.productList,
+      'plpList': instance.plpList,
     };
 
-_Pagination _$PaginationFromJson(Map<String, dynamic> json) => _Pagination(
-  currentPage: (json['currentPage'] as num?)?.toInt(),
-  nextPageNum: (json['nextPageNum'] as num?)?.toInt(),
-  totalPages: (json['totalPages'] as num?)?.toInt(),
+_PlpList _$PlpListFromJson(Map<String, dynamic> json) => _PlpList(
+  productList: (json['productList'] as List<dynamic>?)
+      ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
-Map<String, dynamic> _$PaginationToJson(_Pagination instance) =>
-    <String, dynamic>{
-      'currentPage': instance.currentPage,
-      'nextPageNum': instance.nextPageNum,
-      'totalPages': instance.totalPages,
-    };
+Map<String, dynamic> _$PlpListToJson(_PlpList instance) => <String, dynamic>{
+  'productList': instance.productList,
+};
 
 _Product _$ProductFromJson(Map<String, dynamic> json) => _Product(
-  id: json['id'] as String?,
+  id: json['id'],
   productName: json['productName'] as String?,
   brandName: json['brandName'] as String?,
   url: json['url'] as String?,
@@ -83,13 +80,17 @@ Map<String, dynamic> _$ProductToJson(_Product instance) => <String, dynamic>{
 
 _Price _$PriceFromJson(Map<String, dynamic> json) => _Price(
   priceType: json['priceType'] as String?,
-  price: (json['price'] as num?)?.toDouble(),
+  price: json['price'] as num?,
+  minPrice: json['minPrice'] as num?,
+  maxPrice: json['maxPrice'] as num?,
   formattedPrice: json['formattedPrice'] as String?,
 );
 
 Map<String, dynamic> _$PriceToJson(_Price instance) => <String, dynamic>{
   'priceType': instance.priceType,
   'price': instance.price,
+  'minPrice': instance.minPrice,
+  'maxPrice': instance.maxPrice,
   'formattedPrice': instance.formattedPrice,
 };
 
@@ -106,8 +107,8 @@ Map<String, dynamic> _$AvailabilityToJson(_Availability instance) =>
     };
 
 _Size _$SizeFromJson(Map<String, dynamic> json) => _Size(
-  id: json['id'] as String?,
-  label: json['label'] as String?,
+  id: json['id'],
+  label: json['label'],
   stock: (json['stock'] as num?)?.toInt(),
 );
 
@@ -116,3 +117,16 @@ Map<String, dynamic> _$SizeToJson(_Size instance) => <String, dynamic>{
   'label': instance.label,
   'stock': instance.stock,
 };
+
+_Pagination _$PaginationFromJson(Map<String, dynamic> json) => _Pagination(
+  currentPage: (json['currentPage'] as num?)?.toInt(),
+  nextPageNum: (json['nextPageNum'] as num?)?.toInt(),
+  totalPages: (json['totalPages'] as num?)?.toInt(),
+);
+
+Map<String, dynamic> _$PaginationToJson(_Pagination instance) =>
+    <String, dynamic>{
+      'currentPage': instance.currentPage,
+      'nextPageNum': instance.nextPageNum,
+      'totalPages': instance.totalPages,
+    };

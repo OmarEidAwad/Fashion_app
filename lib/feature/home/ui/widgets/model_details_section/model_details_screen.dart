@@ -29,13 +29,14 @@ class _ModelDetailesScreenState extends State<ModelDetailesScreen> {
   double sheetSize = 0.18;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: () => FocusScope.of(context).unfocus(),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(kToolbarHeight),
           child: CustomAppBar(title: "Men"),
         ),
-      
+
         body: Stack(
           children: [
             Column(
@@ -43,8 +44,8 @@ class _ModelDetailesScreenState extends State<ModelDetailesScreen> {
                 FilterBar(),
                 AnimatedContainer(
                   duration: Duration(milliseconds: 100),
-      
-                  color: Color.fromARGB(255, 241, 239, 239),
+
+                  color: Color(0xffFAFAFC),
                   width: double.infinity,
                   height: 600.h * (1 - (sheetSize - 0.05)),
                   child: PageView.builder(
@@ -56,8 +57,8 @@ class _ModelDetailesScreenState extends State<ModelDetailesScreen> {
                       });
                     },
                     itemBuilder: (context, index) {
-                      final scale = index == currentPageIndex ? 1.0 : 0.80;
-      
+                      final scale = index == currentPageIndex ? 1.0 : 0.75;
+
                       return Transform.scale(
                         scale: scale,
                         child: Padding(
@@ -68,15 +69,17 @@ class _ModelDetailesScreenState extends State<ModelDetailesScreen> {
                                 left: 0,
                                 right: 0,
                                 top: 500.h * (1 - (sheetSize - 0.05)),
-                                child: Image.asset("assets/images/shadow.png"),
+                                child: Image.asset("assets/images/shadow.png",
+                                    fit: BoxFit.contain),
                               ),
                               Positioned.fill(
-                                child: Image.asset(
+                                child: Image.network(
                                   widget
-                                      .modelDetailsModel
-                                      .allModelsModel[index]
-                                      .imageAsset,
-                                  fit: BoxFit.contain,
+                                          .modelDetailsModel
+                                          .allModelsModel[index]
+                                          .modelImage ??
+                                      'https://via.placeholder.com/150',
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ],
@@ -103,7 +106,7 @@ class _ModelDetailesScreenState extends State<ModelDetailesScreen> {
                   return Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
-      
+
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(22),
                         topRight: Radius.circular(22),

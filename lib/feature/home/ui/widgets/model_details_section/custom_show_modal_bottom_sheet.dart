@@ -58,7 +58,7 @@ class _customShowModalBottomSheetState
               widget
                   .allModels
                   .allModelsModel[widget.allModels.currentListIndex]
-                  .name,
+                  .productName?? 'N/A',
             ),
             verticalSpace(32),
             Padding(
@@ -69,7 +69,7 @@ class _customShowModalBottomSheetState
                     widget
                         .allModels
                         .allModelsModel[widget.allModels.currentListIndex]
-                        .price,
+                        .prices?.first.price.toString()?? 'N/A',
                     style: TextStyles.font16GreyBold.copyWith(
                       color: Colors.black,
                     ),

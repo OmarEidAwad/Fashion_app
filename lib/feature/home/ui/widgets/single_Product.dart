@@ -1,3 +1,4 @@
+import 'package:fashion/feature/home/data/models/category_data.dart';
 import 'package:fashion/feature/home/data/models/models_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class singleProduct extends StatelessWidget {
   const singleProduct({super.key, required this.modelDetails});
 
-  final ModelsModel modelDetails;
+  final Product modelDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +28,8 @@ class singleProduct extends StatelessWidget {
               color: Color(0xffECECEC),
               borderRadius: BorderRadius.all(Radius.circular(4)),
             ),
-            child: Image.asset(
-              modelDetails.imageAsset,
+            child: Image.network(
+              modelDetails.modelImage ?? 'https://via.placeholder.com/150',
               // fit: BoxFit.contain,
             ),
           ),

@@ -15,8 +15,9 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CategoryData {
 
-// العوامل المطلوبة (Required)
- String get lang; int get page; int get pageSize; String get country; String? get requestDateTime; String? get responseSource; Pagination? get pagination;@JsonKey(name: 'productList') List<Product>? get productList;
+// التعديل الضروري: شيلنا required وخليناهم nullable
+// لأنهم مش موجودين في الـ JSON اللي راجع من السيرفر
+ String? get lang; int? get page; int? get pageSize; String? get country; String? get requestDateTime; String? get responseSource; Pagination? get pagination; PlpList? get plpList;
 /// Create a copy of CategoryData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +30,16 @@ $CategoryDataCopyWith<CategoryData> get copyWith => _$CategoryDataCopyWithImpl<C
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CategoryData&&(identical(other.lang, lang) || other.lang == lang)&&(identical(other.page, page) || other.page == page)&&(identical(other.pageSize, pageSize) || other.pageSize == pageSize)&&(identical(other.country, country) || other.country == country)&&(identical(other.requestDateTime, requestDateTime) || other.requestDateTime == requestDateTime)&&(identical(other.responseSource, responseSource) || other.responseSource == responseSource)&&(identical(other.pagination, pagination) || other.pagination == pagination)&&const DeepCollectionEquality().equals(other.productList, productList));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CategoryData&&(identical(other.lang, lang) || other.lang == lang)&&(identical(other.page, page) || other.page == page)&&(identical(other.pageSize, pageSize) || other.pageSize == pageSize)&&(identical(other.country, country) || other.country == country)&&(identical(other.requestDateTime, requestDateTime) || other.requestDateTime == requestDateTime)&&(identical(other.responseSource, responseSource) || other.responseSource == responseSource)&&(identical(other.pagination, pagination) || other.pagination == pagination)&&(identical(other.plpList, plpList) || other.plpList == plpList));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,lang,page,pageSize,country,requestDateTime,responseSource,pagination,const DeepCollectionEquality().hash(productList));
+int get hashCode => Object.hash(runtimeType,lang,page,pageSize,country,requestDateTime,responseSource,pagination,plpList);
 
 @override
 String toString() {
-  return 'CategoryData(lang: $lang, page: $page, pageSize: $pageSize, country: $country, requestDateTime: $requestDateTime, responseSource: $responseSource, pagination: $pagination, productList: $productList)';
+  return 'CategoryData(lang: $lang, page: $page, pageSize: $pageSize, country: $country, requestDateTime: $requestDateTime, responseSource: $responseSource, pagination: $pagination, plpList: $plpList)';
 }
 
 
@@ -49,11 +50,11 @@ abstract mixin class $CategoryDataCopyWith<$Res>  {
   factory $CategoryDataCopyWith(CategoryData value, $Res Function(CategoryData) _then) = _$CategoryDataCopyWithImpl;
 @useResult
 $Res call({
- String lang, int page, int pageSize, String country, String? requestDateTime, String? responseSource, Pagination? pagination,@JsonKey(name: 'productList') List<Product>? productList
+ String? lang, int? page, int? pageSize, String? country, String? requestDateTime, String? responseSource, Pagination? pagination, PlpList? plpList
 });
 
 
-$PaginationCopyWith<$Res>? get pagination;
+$PaginationCopyWith<$Res>? get pagination;$PlpListCopyWith<$Res>? get plpList;
 
 }
 /// @nodoc
@@ -66,17 +67,17 @@ class _$CategoryDataCopyWithImpl<$Res>
 
 /// Create a copy of CategoryData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? lang = null,Object? page = null,Object? pageSize = null,Object? country = null,Object? requestDateTime = freezed,Object? responseSource = freezed,Object? pagination = freezed,Object? productList = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? lang = freezed,Object? page = freezed,Object? pageSize = freezed,Object? country = freezed,Object? requestDateTime = freezed,Object? responseSource = freezed,Object? pagination = freezed,Object? plpList = freezed,}) {
   return _then(_self.copyWith(
-lang: null == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
-as String,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
-as int,pageSize: null == pageSize ? _self.pageSize : pageSize // ignore: cast_nullable_to_non_nullable
-as int,country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
-as String,requestDateTime: freezed == requestDateTime ? _self.requestDateTime : requestDateTime // ignore: cast_nullable_to_non_nullable
+lang: freezed == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
+as String?,page: freezed == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int?,pageSize: freezed == pageSize ? _self.pageSize : pageSize // ignore: cast_nullable_to_non_nullable
+as int?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as String?,requestDateTime: freezed == requestDateTime ? _self.requestDateTime : requestDateTime // ignore: cast_nullable_to_non_nullable
 as String?,responseSource: freezed == responseSource ? _self.responseSource : responseSource // ignore: cast_nullable_to_non_nullable
 as String?,pagination: freezed == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
-as Pagination?,productList: freezed == productList ? _self.productList : productList // ignore: cast_nullable_to_non_nullable
-as List<Product>?,
+as Pagination?,plpList: freezed == plpList ? _self.plpList : plpList // ignore: cast_nullable_to_non_nullable
+as PlpList?,
   ));
 }
 /// Create a copy of CategoryData
@@ -90,6 +91,18 @@ $PaginationCopyWith<$Res>? get pagination {
 
   return $PaginationCopyWith<$Res>(_self.pagination!, (value) {
     return _then(_self.copyWith(pagination: value));
+  });
+}/// Create a copy of CategoryData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PlpListCopyWith<$Res>? get plpList {
+    if (_self.plpList == null) {
+    return null;
+  }
+
+  return $PlpListCopyWith<$Res>(_self.plpList!, (value) {
+    return _then(_self.copyWith(plpList: value));
   });
 }
 }
@@ -173,10 +186,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String lang,  int page,  int pageSize,  String country,  String? requestDateTime,  String? responseSource,  Pagination? pagination, @JsonKey(name: 'productList')  List<Product>? productList)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? lang,  int? page,  int? pageSize,  String? country,  String? requestDateTime,  String? responseSource,  Pagination? pagination,  PlpList? plpList)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CategoryData() when $default != null:
-return $default(_that.lang,_that.page,_that.pageSize,_that.country,_that.requestDateTime,_that.responseSource,_that.pagination,_that.productList);case _:
+return $default(_that.lang,_that.page,_that.pageSize,_that.country,_that.requestDateTime,_that.responseSource,_that.pagination,_that.plpList);case _:
   return orElse();
 
 }
@@ -194,10 +207,10 @@ return $default(_that.lang,_that.page,_that.pageSize,_that.country,_that.request
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String lang,  int page,  int pageSize,  String country,  String? requestDateTime,  String? responseSource,  Pagination? pagination, @JsonKey(name: 'productList')  List<Product>? productList)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? lang,  int? page,  int? pageSize,  String? country,  String? requestDateTime,  String? responseSource,  Pagination? pagination,  PlpList? plpList)  $default,) {final _that = this;
 switch (_that) {
 case _CategoryData():
-return $default(_that.lang,_that.page,_that.pageSize,_that.country,_that.requestDateTime,_that.responseSource,_that.pagination,_that.productList);case _:
+return $default(_that.lang,_that.page,_that.pageSize,_that.country,_that.requestDateTime,_that.responseSource,_that.pagination,_that.plpList);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -214,10 +227,10 @@ return $default(_that.lang,_that.page,_that.pageSize,_that.country,_that.request
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String lang,  int page,  int pageSize,  String country,  String? requestDateTime,  String? responseSource,  Pagination? pagination, @JsonKey(name: 'productList')  List<Product>? productList)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? lang,  int? page,  int? pageSize,  String? country,  String? requestDateTime,  String? responseSource,  Pagination? pagination,  PlpList? plpList)?  $default,) {final _that = this;
 switch (_that) {
 case _CategoryData() when $default != null:
-return $default(_that.lang,_that.page,_that.pageSize,_that.country,_that.requestDateTime,_that.responseSource,_that.pagination,_that.productList);case _:
+return $default(_that.lang,_that.page,_that.pageSize,_that.country,_that.requestDateTime,_that.responseSource,_that.pagination,_that.plpList);case _:
   return null;
 
 }
@@ -229,26 +242,19 @@ return $default(_that.lang,_that.page,_that.pageSize,_that.country,_that.request
 @JsonSerializable()
 
 class _CategoryData implements CategoryData {
-  const _CategoryData({required this.lang, required this.page, required this.pageSize, required this.country, this.requestDateTime, this.responseSource, this.pagination, @JsonKey(name: 'productList') final  List<Product>? productList}): _productList = productList;
+  const _CategoryData({this.lang, this.page, this.pageSize, this.country, this.requestDateTime, this.responseSource, this.pagination, this.plpList});
   factory _CategoryData.fromJson(Map<String, dynamic> json) => _$CategoryDataFromJson(json);
 
-// العوامل المطلوبة (Required)
-@override final  String lang;
-@override final  int page;
-@override final  int pageSize;
-@override final  String country;
+// التعديل الضروري: شيلنا required وخليناهم nullable
+// لأنهم مش موجودين في الـ JSON اللي راجع من السيرفر
+@override final  String? lang;
+@override final  int? page;
+@override final  int? pageSize;
+@override final  String? country;
 @override final  String? requestDateTime;
 @override final  String? responseSource;
 @override final  Pagination? pagination;
- final  List<Product>? _productList;
-@override@JsonKey(name: 'productList') List<Product>? get productList {
-  final value = _productList;
-  if (value == null) return null;
-  if (_productList is EqualUnmodifiableListView) return _productList;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
+@override final  PlpList? plpList;
 
 /// Create a copy of CategoryData
 /// with the given fields replaced by the non-null parameter values.
@@ -263,16 +269,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CategoryData&&(identical(other.lang, lang) || other.lang == lang)&&(identical(other.page, page) || other.page == page)&&(identical(other.pageSize, pageSize) || other.pageSize == pageSize)&&(identical(other.country, country) || other.country == country)&&(identical(other.requestDateTime, requestDateTime) || other.requestDateTime == requestDateTime)&&(identical(other.responseSource, responseSource) || other.responseSource == responseSource)&&(identical(other.pagination, pagination) || other.pagination == pagination)&&const DeepCollectionEquality().equals(other._productList, _productList));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CategoryData&&(identical(other.lang, lang) || other.lang == lang)&&(identical(other.page, page) || other.page == page)&&(identical(other.pageSize, pageSize) || other.pageSize == pageSize)&&(identical(other.country, country) || other.country == country)&&(identical(other.requestDateTime, requestDateTime) || other.requestDateTime == requestDateTime)&&(identical(other.responseSource, responseSource) || other.responseSource == responseSource)&&(identical(other.pagination, pagination) || other.pagination == pagination)&&(identical(other.plpList, plpList) || other.plpList == plpList));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,lang,page,pageSize,country,requestDateTime,responseSource,pagination,const DeepCollectionEquality().hash(_productList));
+int get hashCode => Object.hash(runtimeType,lang,page,pageSize,country,requestDateTime,responseSource,pagination,plpList);
 
 @override
 String toString() {
-  return 'CategoryData(lang: $lang, page: $page, pageSize: $pageSize, country: $country, requestDateTime: $requestDateTime, responseSource: $responseSource, pagination: $pagination, productList: $productList)';
+  return 'CategoryData(lang: $lang, page: $page, pageSize: $pageSize, country: $country, requestDateTime: $requestDateTime, responseSource: $responseSource, pagination: $pagination, plpList: $plpList)';
 }
 
 
@@ -283,11 +289,11 @@ abstract mixin class _$CategoryDataCopyWith<$Res> implements $CategoryDataCopyWi
   factory _$CategoryDataCopyWith(_CategoryData value, $Res Function(_CategoryData) _then) = __$CategoryDataCopyWithImpl;
 @override @useResult
 $Res call({
- String lang, int page, int pageSize, String country, String? requestDateTime, String? responseSource, Pagination? pagination,@JsonKey(name: 'productList') List<Product>? productList
+ String? lang, int? page, int? pageSize, String? country, String? requestDateTime, String? responseSource, Pagination? pagination, PlpList? plpList
 });
 
 
-@override $PaginationCopyWith<$Res>? get pagination;
+@override $PaginationCopyWith<$Res>? get pagination;@override $PlpListCopyWith<$Res>? get plpList;
 
 }
 /// @nodoc
@@ -300,17 +306,17 @@ class __$CategoryDataCopyWithImpl<$Res>
 
 /// Create a copy of CategoryData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? lang = null,Object? page = null,Object? pageSize = null,Object? country = null,Object? requestDateTime = freezed,Object? responseSource = freezed,Object? pagination = freezed,Object? productList = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? lang = freezed,Object? page = freezed,Object? pageSize = freezed,Object? country = freezed,Object? requestDateTime = freezed,Object? responseSource = freezed,Object? pagination = freezed,Object? plpList = freezed,}) {
   return _then(_CategoryData(
-lang: null == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
-as String,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
-as int,pageSize: null == pageSize ? _self.pageSize : pageSize // ignore: cast_nullable_to_non_nullable
-as int,country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
-as String,requestDateTime: freezed == requestDateTime ? _self.requestDateTime : requestDateTime // ignore: cast_nullable_to_non_nullable
+lang: freezed == lang ? _self.lang : lang // ignore: cast_nullable_to_non_nullable
+as String?,page: freezed == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int?,pageSize: freezed == pageSize ? _self.pageSize : pageSize // ignore: cast_nullable_to_non_nullable
+as int?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as String?,requestDateTime: freezed == requestDateTime ? _self.requestDateTime : requestDateTime // ignore: cast_nullable_to_non_nullable
 as String?,responseSource: freezed == responseSource ? _self.responseSource : responseSource // ignore: cast_nullable_to_non_nullable
 as String?,pagination: freezed == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
-as Pagination?,productList: freezed == productList ? _self._productList : productList // ignore: cast_nullable_to_non_nullable
-as List<Product>?,
+as Pagination?,plpList: freezed == plpList ? _self.plpList : plpList // ignore: cast_nullable_to_non_nullable
+as PlpList?,
   ));
 }
 
@@ -326,47 +332,59 @@ $PaginationCopyWith<$Res>? get pagination {
   return $PaginationCopyWith<$Res>(_self.pagination!, (value) {
     return _then(_self.copyWith(pagination: value));
   });
+}/// Create a copy of CategoryData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PlpListCopyWith<$Res>? get plpList {
+    if (_self.plpList == null) {
+    return null;
+  }
+
+  return $PlpListCopyWith<$Res>(_self.plpList!, (value) {
+    return _then(_self.copyWith(plpList: value));
+  });
 }
 }
 
 
 /// @nodoc
-mixin _$Pagination {
+mixin _$PlpList {
 
- int? get currentPage; int? get nextPageNum; int? get totalPages;
-/// Create a copy of Pagination
+@JsonKey(name: 'productList') List<Product>? get productList;
+/// Create a copy of PlpList
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$PaginationCopyWith<Pagination> get copyWith => _$PaginationCopyWithImpl<Pagination>(this as Pagination, _$identity);
+$PlpListCopyWith<PlpList> get copyWith => _$PlpListCopyWithImpl<PlpList>(this as PlpList, _$identity);
 
-  /// Serializes this Pagination to a JSON map.
+  /// Serializes this PlpList to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Pagination&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.nextPageNum, nextPageNum) || other.nextPageNum == nextPageNum)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlpList&&const DeepCollectionEquality().equals(other.productList, productList));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,currentPage,nextPageNum,totalPages);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(productList));
 
 @override
 String toString() {
-  return 'Pagination(currentPage: $currentPage, nextPageNum: $nextPageNum, totalPages: $totalPages)';
+  return 'PlpList(productList: $productList)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $PaginationCopyWith<$Res>  {
-  factory $PaginationCopyWith(Pagination value, $Res Function(Pagination) _then) = _$PaginationCopyWithImpl;
+abstract mixin class $PlpListCopyWith<$Res>  {
+  factory $PlpListCopyWith(PlpList value, $Res Function(PlpList) _then) = _$PlpListCopyWithImpl;
 @useResult
 $Res call({
- int? currentPage, int? nextPageNum, int? totalPages
+@JsonKey(name: 'productList') List<Product>? productList
 });
 
 
@@ -374,29 +392,27 @@ $Res call({
 
 }
 /// @nodoc
-class _$PaginationCopyWithImpl<$Res>
-    implements $PaginationCopyWith<$Res> {
-  _$PaginationCopyWithImpl(this._self, this._then);
+class _$PlpListCopyWithImpl<$Res>
+    implements $PlpListCopyWith<$Res> {
+  _$PlpListCopyWithImpl(this._self, this._then);
 
-  final Pagination _self;
-  final $Res Function(Pagination) _then;
+  final PlpList _self;
+  final $Res Function(PlpList) _then;
 
-/// Create a copy of Pagination
+/// Create a copy of PlpList
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? currentPage = freezed,Object? nextPageNum = freezed,Object? totalPages = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? productList = freezed,}) {
   return _then(_self.copyWith(
-currentPage: freezed == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
-as int?,nextPageNum: freezed == nextPageNum ? _self.nextPageNum : nextPageNum // ignore: cast_nullable_to_non_nullable
-as int?,totalPages: freezed == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
-as int?,
+productList: freezed == productList ? _self.productList : productList // ignore: cast_nullable_to_non_nullable
+as List<Product>?,
   ));
 }
 
 }
 
 
-/// Adds pattern-matching-related methods to [Pagination].
-extension PaginationPatterns on Pagination {
+/// Adds pattern-matching-related methods to [PlpList].
+extension PlpListPatterns on PlpList {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -409,10 +425,10 @@ extension PaginationPatterns on Pagination {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Pagination value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PlpList value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Pagination() when $default != null:
+case _PlpList() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -431,10 +447,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Pagination value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PlpList value)  $default,){
 final _that = this;
 switch (_that) {
-case _Pagination():
+case _PlpList():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -452,10 +468,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Pagination value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PlpList value)?  $default,){
 final _that = this;
 switch (_that) {
-case _Pagination() when $default != null:
+case _PlpList() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -473,10 +489,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? currentPage,  int? nextPageNum,  int? totalPages)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'productList')  List<Product>? productList)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Pagination() when $default != null:
-return $default(_that.currentPage,_that.nextPageNum,_that.totalPages);case _:
+case _PlpList() when $default != null:
+return $default(_that.productList);case _:
   return orElse();
 
 }
@@ -494,10 +510,10 @@ return $default(_that.currentPage,_that.nextPageNum,_that.totalPages);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? currentPage,  int? nextPageNum,  int? totalPages)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'productList')  List<Product>? productList)  $default,) {final _that = this;
 switch (_that) {
-case _Pagination():
-return $default(_that.currentPage,_that.nextPageNum,_that.totalPages);case _:
+case _PlpList():
+return $default(_that.productList);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -514,10 +530,10 @@ return $default(_that.currentPage,_that.nextPageNum,_that.totalPages);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? currentPage,  int? nextPageNum,  int? totalPages)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'productList')  List<Product>? productList)?  $default,) {final _that = this;
 switch (_that) {
-case _Pagination() when $default != null:
-return $default(_that.currentPage,_that.nextPageNum,_that.totalPages);case _:
+case _PlpList() when $default != null:
+return $default(_that.productList);case _:
   return null;
 
 }
@@ -528,48 +544,54 @@ return $default(_that.currentPage,_that.nextPageNum,_that.totalPages);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _Pagination implements Pagination {
-  const _Pagination({this.currentPage, this.nextPageNum, this.totalPages});
-  factory _Pagination.fromJson(Map<String, dynamic> json) => _$PaginationFromJson(json);
+class _PlpList implements PlpList {
+  const _PlpList({@JsonKey(name: 'productList') final  List<Product>? productList}): _productList = productList;
+  factory _PlpList.fromJson(Map<String, dynamic> json) => _$PlpListFromJson(json);
 
-@override final  int? currentPage;
-@override final  int? nextPageNum;
-@override final  int? totalPages;
+ final  List<Product>? _productList;
+@override@JsonKey(name: 'productList') List<Product>? get productList {
+  final value = _productList;
+  if (value == null) return null;
+  if (_productList is EqualUnmodifiableListView) return _productList;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
 
-/// Create a copy of Pagination
+
+/// Create a copy of PlpList
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$PaginationCopyWith<_Pagination> get copyWith => __$PaginationCopyWithImpl<_Pagination>(this, _$identity);
+_$PlpListCopyWith<_PlpList> get copyWith => __$PlpListCopyWithImpl<_PlpList>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$PaginationToJson(this, );
+  return _$PlpListToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Pagination&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.nextPageNum, nextPageNum) || other.nextPageNum == nextPageNum)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlpList&&const DeepCollectionEquality().equals(other._productList, _productList));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,currentPage,nextPageNum,totalPages);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_productList));
 
 @override
 String toString() {
-  return 'Pagination(currentPage: $currentPage, nextPageNum: $nextPageNum, totalPages: $totalPages)';
+  return 'PlpList(productList: $productList)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$PaginationCopyWith<$Res> implements $PaginationCopyWith<$Res> {
-  factory _$PaginationCopyWith(_Pagination value, $Res Function(_Pagination) _then) = __$PaginationCopyWithImpl;
+abstract mixin class _$PlpListCopyWith<$Res> implements $PlpListCopyWith<$Res> {
+  factory _$PlpListCopyWith(_PlpList value, $Res Function(_PlpList) _then) = __$PlpListCopyWithImpl;
 @override @useResult
 $Res call({
- int? currentPage, int? nextPageNum, int? totalPages
+@JsonKey(name: 'productList') List<Product>? productList
 });
 
 
@@ -577,21 +599,19 @@ $Res call({
 
 }
 /// @nodoc
-class __$PaginationCopyWithImpl<$Res>
-    implements _$PaginationCopyWith<$Res> {
-  __$PaginationCopyWithImpl(this._self, this._then);
+class __$PlpListCopyWithImpl<$Res>
+    implements _$PlpListCopyWith<$Res> {
+  __$PlpListCopyWithImpl(this._self, this._then);
 
-  final _Pagination _self;
-  final $Res Function(_Pagination) _then;
+  final _PlpList _self;
+  final $Res Function(_PlpList) _then;
 
-/// Create a copy of Pagination
+/// Create a copy of PlpList
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? currentPage = freezed,Object? nextPageNum = freezed,Object? totalPages = freezed,}) {
-  return _then(_Pagination(
-currentPage: freezed == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
-as int?,nextPageNum: freezed == nextPageNum ? _self.nextPageNum : nextPageNum // ignore: cast_nullable_to_non_nullable
-as int?,totalPages: freezed == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
-as int?,
+@override @pragma('vm:prefer-inline') $Res call({Object? productList = freezed,}) {
+  return _then(_PlpList(
+productList: freezed == productList ? _self._productList : productList // ignore: cast_nullable_to_non_nullable
+as List<Product>?,
   ));
 }
 
@@ -602,7 +622,7 @@ as int?,
 /// @nodoc
 mixin _$Product {
 
- String? get id; String? get productName; String? get brandName; String? get url; List<Price>? get prices; Availability? get availability; List<Size>? get sizes; String? get colorName; String? get modelImage; bool? get newArrival; String? get mainCatCode;
+ dynamic get id; String? get productName; String? get brandName; String? get url; List<Price>? get prices; Availability? get availability; List<Size>? get sizes; String? get colorName; String? get modelImage; bool? get newArrival; String? get mainCatCode;
 /// Create a copy of Product
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -615,12 +635,12 @@ $ProductCopyWith<Product> get copyWith => _$ProductCopyWithImpl<Product>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Product&&(identical(other.id, id) || other.id == id)&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.brandName, brandName) || other.brandName == brandName)&&(identical(other.url, url) || other.url == url)&&const DeepCollectionEquality().equals(other.prices, prices)&&(identical(other.availability, availability) || other.availability == availability)&&const DeepCollectionEquality().equals(other.sizes, sizes)&&(identical(other.colorName, colorName) || other.colorName == colorName)&&(identical(other.modelImage, modelImage) || other.modelImage == modelImage)&&(identical(other.newArrival, newArrival) || other.newArrival == newArrival)&&(identical(other.mainCatCode, mainCatCode) || other.mainCatCode == mainCatCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Product&&const DeepCollectionEquality().equals(other.id, id)&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.brandName, brandName) || other.brandName == brandName)&&(identical(other.url, url) || other.url == url)&&const DeepCollectionEquality().equals(other.prices, prices)&&(identical(other.availability, availability) || other.availability == availability)&&const DeepCollectionEquality().equals(other.sizes, sizes)&&(identical(other.colorName, colorName) || other.colorName == colorName)&&(identical(other.modelImage, modelImage) || other.modelImage == modelImage)&&(identical(other.newArrival, newArrival) || other.newArrival == newArrival)&&(identical(other.mainCatCode, mainCatCode) || other.mainCatCode == mainCatCode));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,productName,brandName,url,const DeepCollectionEquality().hash(prices),availability,const DeepCollectionEquality().hash(sizes),colorName,modelImage,newArrival,mainCatCode);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(id),productName,brandName,url,const DeepCollectionEquality().hash(prices),availability,const DeepCollectionEquality().hash(sizes),colorName,modelImage,newArrival,mainCatCode);
 
 @override
 String toString() {
@@ -635,7 +655,7 @@ abstract mixin class $ProductCopyWith<$Res>  {
   factory $ProductCopyWith(Product value, $Res Function(Product) _then) = _$ProductCopyWithImpl;
 @useResult
 $Res call({
- String? id, String? productName, String? brandName, String? url, List<Price>? prices, Availability? availability, List<Size>? sizes, String? colorName, String? modelImage, bool? newArrival, String? mainCatCode
+ dynamic id, String? productName, String? brandName, String? url, List<Price>? prices, Availability? availability, List<Size>? sizes, String? colorName, String? modelImage, bool? newArrival, String? mainCatCode
 });
 
 
@@ -655,7 +675,7 @@ class _$ProductCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? productName = freezed,Object? brandName = freezed,Object? url = freezed,Object? prices = freezed,Object? availability = freezed,Object? sizes = freezed,Object? colorName = freezed,Object? modelImage = freezed,Object? newArrival = freezed,Object? mainCatCode = freezed,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,productName: freezed == productName ? _self.productName : productName // ignore: cast_nullable_to_non_nullable
+as dynamic,productName: freezed == productName ? _self.productName : productName // ignore: cast_nullable_to_non_nullable
 as String?,brandName: freezed == brandName ? _self.brandName : brandName // ignore: cast_nullable_to_non_nullable
 as String?,url: freezed == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String?,prices: freezed == prices ? _self.prices : prices // ignore: cast_nullable_to_non_nullable
@@ -762,7 +782,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String? productName,  String? brandName,  String? url,  List<Price>? prices,  Availability? availability,  List<Size>? sizes,  String? colorName,  String? modelImage,  bool? newArrival,  String? mainCatCode)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( dynamic id,  String? productName,  String? brandName,  String? url,  List<Price>? prices,  Availability? availability,  List<Size>? sizes,  String? colorName,  String? modelImage,  bool? newArrival,  String? mainCatCode)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Product() when $default != null:
 return $default(_that.id,_that.productName,_that.brandName,_that.url,_that.prices,_that.availability,_that.sizes,_that.colorName,_that.modelImage,_that.newArrival,_that.mainCatCode);case _:
@@ -783,7 +803,7 @@ return $default(_that.id,_that.productName,_that.brandName,_that.url,_that.price
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String? productName,  String? brandName,  String? url,  List<Price>? prices,  Availability? availability,  List<Size>? sizes,  String? colorName,  String? modelImage,  bool? newArrival,  String? mainCatCode)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( dynamic id,  String? productName,  String? brandName,  String? url,  List<Price>? prices,  Availability? availability,  List<Size>? sizes,  String? colorName,  String? modelImage,  bool? newArrival,  String? mainCatCode)  $default,) {final _that = this;
 switch (_that) {
 case _Product():
 return $default(_that.id,_that.productName,_that.brandName,_that.url,_that.prices,_that.availability,_that.sizes,_that.colorName,_that.modelImage,_that.newArrival,_that.mainCatCode);case _:
@@ -803,7 +823,7 @@ return $default(_that.id,_that.productName,_that.brandName,_that.url,_that.price
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String? productName,  String? brandName,  String? url,  List<Price>? prices,  Availability? availability,  List<Size>? sizes,  String? colorName,  String? modelImage,  bool? newArrival,  String? mainCatCode)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( dynamic id,  String? productName,  String? brandName,  String? url,  List<Price>? prices,  Availability? availability,  List<Size>? sizes,  String? colorName,  String? modelImage,  bool? newArrival,  String? mainCatCode)?  $default,) {final _that = this;
 switch (_that) {
 case _Product() when $default != null:
 return $default(_that.id,_that.productName,_that.brandName,_that.url,_that.prices,_that.availability,_that.sizes,_that.colorName,_that.modelImage,_that.newArrival,_that.mainCatCode);case _:
@@ -821,7 +841,7 @@ class _Product implements Product {
   const _Product({this.id, this.productName, this.brandName, this.url, final  List<Price>? prices, this.availability, final  List<Size>? sizes, this.colorName, this.modelImage, this.newArrival, this.mainCatCode}): _prices = prices,_sizes = sizes;
   factory _Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
 
-@override final  String? id;
+@override final  dynamic id;
 @override final  String? productName;
 @override final  String? brandName;
 @override final  String? url;
@@ -862,12 +882,12 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Product&&(identical(other.id, id) || other.id == id)&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.brandName, brandName) || other.brandName == brandName)&&(identical(other.url, url) || other.url == url)&&const DeepCollectionEquality().equals(other._prices, _prices)&&(identical(other.availability, availability) || other.availability == availability)&&const DeepCollectionEquality().equals(other._sizes, _sizes)&&(identical(other.colorName, colorName) || other.colorName == colorName)&&(identical(other.modelImage, modelImage) || other.modelImage == modelImage)&&(identical(other.newArrival, newArrival) || other.newArrival == newArrival)&&(identical(other.mainCatCode, mainCatCode) || other.mainCatCode == mainCatCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Product&&const DeepCollectionEquality().equals(other.id, id)&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.brandName, brandName) || other.brandName == brandName)&&(identical(other.url, url) || other.url == url)&&const DeepCollectionEquality().equals(other._prices, _prices)&&(identical(other.availability, availability) || other.availability == availability)&&const DeepCollectionEquality().equals(other._sizes, _sizes)&&(identical(other.colorName, colorName) || other.colorName == colorName)&&(identical(other.modelImage, modelImage) || other.modelImage == modelImage)&&(identical(other.newArrival, newArrival) || other.newArrival == newArrival)&&(identical(other.mainCatCode, mainCatCode) || other.mainCatCode == mainCatCode));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,productName,brandName,url,const DeepCollectionEquality().hash(_prices),availability,const DeepCollectionEquality().hash(_sizes),colorName,modelImage,newArrival,mainCatCode);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(id),productName,brandName,url,const DeepCollectionEquality().hash(_prices),availability,const DeepCollectionEquality().hash(_sizes),colorName,modelImage,newArrival,mainCatCode);
 
 @override
 String toString() {
@@ -882,7 +902,7 @@ abstract mixin class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
   factory _$ProductCopyWith(_Product value, $Res Function(_Product) _then) = __$ProductCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String? productName, String? brandName, String? url, List<Price>? prices, Availability? availability, List<Size>? sizes, String? colorName, String? modelImage, bool? newArrival, String? mainCatCode
+ dynamic id, String? productName, String? brandName, String? url, List<Price>? prices, Availability? availability, List<Size>? sizes, String? colorName, String? modelImage, bool? newArrival, String? mainCatCode
 });
 
 
@@ -902,7 +922,7 @@ class __$ProductCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? productName = freezed,Object? brandName = freezed,Object? url = freezed,Object? prices = freezed,Object? availability = freezed,Object? sizes = freezed,Object? colorName = freezed,Object? modelImage = freezed,Object? newArrival = freezed,Object? mainCatCode = freezed,}) {
   return _then(_Product(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,productName: freezed == productName ? _self.productName : productName // ignore: cast_nullable_to_non_nullable
+as dynamic,productName: freezed == productName ? _self.productName : productName // ignore: cast_nullable_to_non_nullable
 as String?,brandName: freezed == brandName ? _self.brandName : brandName // ignore: cast_nullable_to_non_nullable
 as String?,url: freezed == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String?,prices: freezed == prices ? _self._prices : prices // ignore: cast_nullable_to_non_nullable
@@ -935,7 +955,7 @@ $AvailabilityCopyWith<$Res>? get availability {
 /// @nodoc
 mixin _$Price {
 
- String? get priceType; double? get price; String? get formattedPrice;
+ String? get priceType; num? get price; num? get minPrice; num? get maxPrice; String? get formattedPrice;
 /// Create a copy of Price
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -948,16 +968,16 @@ $PriceCopyWith<Price> get copyWith => _$PriceCopyWithImpl<Price>(this as Price, 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Price&&(identical(other.priceType, priceType) || other.priceType == priceType)&&(identical(other.price, price) || other.price == price)&&(identical(other.formattedPrice, formattedPrice) || other.formattedPrice == formattedPrice));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Price&&(identical(other.priceType, priceType) || other.priceType == priceType)&&(identical(other.price, price) || other.price == price)&&(identical(other.minPrice, minPrice) || other.minPrice == minPrice)&&(identical(other.maxPrice, maxPrice) || other.maxPrice == maxPrice)&&(identical(other.formattedPrice, formattedPrice) || other.formattedPrice == formattedPrice));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,priceType,price,formattedPrice);
+int get hashCode => Object.hash(runtimeType,priceType,price,minPrice,maxPrice,formattedPrice);
 
 @override
 String toString() {
-  return 'Price(priceType: $priceType, price: $price, formattedPrice: $formattedPrice)';
+  return 'Price(priceType: $priceType, price: $price, minPrice: $minPrice, maxPrice: $maxPrice, formattedPrice: $formattedPrice)';
 }
 
 
@@ -968,7 +988,7 @@ abstract mixin class $PriceCopyWith<$Res>  {
   factory $PriceCopyWith(Price value, $Res Function(Price) _then) = _$PriceCopyWithImpl;
 @useResult
 $Res call({
- String? priceType, double? price, String? formattedPrice
+ String? priceType, num? price, num? minPrice, num? maxPrice, String? formattedPrice
 });
 
 
@@ -985,11 +1005,13 @@ class _$PriceCopyWithImpl<$Res>
 
 /// Create a copy of Price
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? priceType = freezed,Object? price = freezed,Object? formattedPrice = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? priceType = freezed,Object? price = freezed,Object? minPrice = freezed,Object? maxPrice = freezed,Object? formattedPrice = freezed,}) {
   return _then(_self.copyWith(
 priceType: freezed == priceType ? _self.priceType : priceType // ignore: cast_nullable_to_non_nullable
 as String?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-as double?,formattedPrice: freezed == formattedPrice ? _self.formattedPrice : formattedPrice // ignore: cast_nullable_to_non_nullable
+as num?,minPrice: freezed == minPrice ? _self.minPrice : minPrice // ignore: cast_nullable_to_non_nullable
+as num?,maxPrice: freezed == maxPrice ? _self.maxPrice : maxPrice // ignore: cast_nullable_to_non_nullable
+as num?,formattedPrice: freezed == formattedPrice ? _self.formattedPrice : formattedPrice // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1075,10 +1097,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? priceType,  double? price,  String? formattedPrice)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? priceType,  num? price,  num? minPrice,  num? maxPrice,  String? formattedPrice)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Price() when $default != null:
-return $default(_that.priceType,_that.price,_that.formattedPrice);case _:
+return $default(_that.priceType,_that.price,_that.minPrice,_that.maxPrice,_that.formattedPrice);case _:
   return orElse();
 
 }
@@ -1096,10 +1118,10 @@ return $default(_that.priceType,_that.price,_that.formattedPrice);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? priceType,  double? price,  String? formattedPrice)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? priceType,  num? price,  num? minPrice,  num? maxPrice,  String? formattedPrice)  $default,) {final _that = this;
 switch (_that) {
 case _Price():
-return $default(_that.priceType,_that.price,_that.formattedPrice);case _:
+return $default(_that.priceType,_that.price,_that.minPrice,_that.maxPrice,_that.formattedPrice);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1116,10 +1138,10 @@ return $default(_that.priceType,_that.price,_that.formattedPrice);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? priceType,  double? price,  String? formattedPrice)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? priceType,  num? price,  num? minPrice,  num? maxPrice,  String? formattedPrice)?  $default,) {final _that = this;
 switch (_that) {
 case _Price() when $default != null:
-return $default(_that.priceType,_that.price,_that.formattedPrice);case _:
+return $default(_that.priceType,_that.price,_that.minPrice,_that.maxPrice,_that.formattedPrice);case _:
   return null;
 
 }
@@ -1131,11 +1153,13 @@ return $default(_that.priceType,_that.price,_that.formattedPrice);case _:
 @JsonSerializable()
 
 class _Price implements Price {
-  const _Price({this.priceType, this.price, this.formattedPrice});
+  const _Price({this.priceType, this.price, this.minPrice, this.maxPrice, this.formattedPrice});
   factory _Price.fromJson(Map<String, dynamic> json) => _$PriceFromJson(json);
 
 @override final  String? priceType;
-@override final  double? price;
+@override final  num? price;
+@override final  num? minPrice;
+@override final  num? maxPrice;
 @override final  String? formattedPrice;
 
 /// Create a copy of Price
@@ -1151,16 +1175,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Price&&(identical(other.priceType, priceType) || other.priceType == priceType)&&(identical(other.price, price) || other.price == price)&&(identical(other.formattedPrice, formattedPrice) || other.formattedPrice == formattedPrice));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Price&&(identical(other.priceType, priceType) || other.priceType == priceType)&&(identical(other.price, price) || other.price == price)&&(identical(other.minPrice, minPrice) || other.minPrice == minPrice)&&(identical(other.maxPrice, maxPrice) || other.maxPrice == maxPrice)&&(identical(other.formattedPrice, formattedPrice) || other.formattedPrice == formattedPrice));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,priceType,price,formattedPrice);
+int get hashCode => Object.hash(runtimeType,priceType,price,minPrice,maxPrice,formattedPrice);
 
 @override
 String toString() {
-  return 'Price(priceType: $priceType, price: $price, formattedPrice: $formattedPrice)';
+  return 'Price(priceType: $priceType, price: $price, minPrice: $minPrice, maxPrice: $maxPrice, formattedPrice: $formattedPrice)';
 }
 
 
@@ -1171,7 +1195,7 @@ abstract mixin class _$PriceCopyWith<$Res> implements $PriceCopyWith<$Res> {
   factory _$PriceCopyWith(_Price value, $Res Function(_Price) _then) = __$PriceCopyWithImpl;
 @override @useResult
 $Res call({
- String? priceType, double? price, String? formattedPrice
+ String? priceType, num? price, num? minPrice, num? maxPrice, String? formattedPrice
 });
 
 
@@ -1188,11 +1212,13 @@ class __$PriceCopyWithImpl<$Res>
 
 /// Create a copy of Price
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? priceType = freezed,Object? price = freezed,Object? formattedPrice = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? priceType = freezed,Object? price = freezed,Object? minPrice = freezed,Object? maxPrice = freezed,Object? formattedPrice = freezed,}) {
   return _then(_Price(
 priceType: freezed == priceType ? _self.priceType : priceType // ignore: cast_nullable_to_non_nullable
 as String?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-as double?,formattedPrice: freezed == formattedPrice ? _self.formattedPrice : formattedPrice // ignore: cast_nullable_to_non_nullable
+as num?,minPrice: freezed == minPrice ? _self.minPrice : minPrice // ignore: cast_nullable_to_non_nullable
+as num?,maxPrice: freezed == maxPrice ? _self.maxPrice : maxPrice // ignore: cast_nullable_to_non_nullable
+as num?,formattedPrice: freezed == formattedPrice ? _self.formattedPrice : formattedPrice // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1470,7 +1496,7 @@ as bool?,
 /// @nodoc
 mixin _$Size {
 
- String? get id; String? get label; int? get stock;
+ dynamic get id; dynamic get label; int? get stock;
 /// Create a copy of Size
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1483,12 +1509,12 @@ $SizeCopyWith<Size> get copyWith => _$SizeCopyWithImpl<Size>(this as Size, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Size&&(identical(other.id, id) || other.id == id)&&(identical(other.label, label) || other.label == label)&&(identical(other.stock, stock) || other.stock == stock));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Size&&const DeepCollectionEquality().equals(other.id, id)&&const DeepCollectionEquality().equals(other.label, label)&&(identical(other.stock, stock) || other.stock == stock));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,label,stock);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(id),const DeepCollectionEquality().hash(label),stock);
 
 @override
 String toString() {
@@ -1503,7 +1529,7 @@ abstract mixin class $SizeCopyWith<$Res>  {
   factory $SizeCopyWith(Size value, $Res Function(Size) _then) = _$SizeCopyWithImpl;
 @useResult
 $Res call({
- String? id, String? label, int? stock
+ dynamic id, dynamic label, int? stock
 });
 
 
@@ -1523,8 +1549,8 @@ class _$SizeCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? label = freezed,Object? stock = freezed,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as String?,stock: freezed == stock ? _self.stock : stock // ignore: cast_nullable_to_non_nullable
+as dynamic,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+as dynamic,stock: freezed == stock ? _self.stock : stock // ignore: cast_nullable_to_non_nullable
 as int?,
   ));
 }
@@ -1610,7 +1636,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String? label,  int? stock)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( dynamic id,  dynamic label,  int? stock)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Size() when $default != null:
 return $default(_that.id,_that.label,_that.stock);case _:
@@ -1631,7 +1657,7 @@ return $default(_that.id,_that.label,_that.stock);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String? label,  int? stock)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( dynamic id,  dynamic label,  int? stock)  $default,) {final _that = this;
 switch (_that) {
 case _Size():
 return $default(_that.id,_that.label,_that.stock);case _:
@@ -1651,7 +1677,7 @@ return $default(_that.id,_that.label,_that.stock);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String? label,  int? stock)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( dynamic id,  dynamic label,  int? stock)?  $default,) {final _that = this;
 switch (_that) {
 case _Size() when $default != null:
 return $default(_that.id,_that.label,_that.stock);case _:
@@ -1669,8 +1695,8 @@ class _Size implements Size {
   const _Size({this.id, this.label, this.stock});
   factory _Size.fromJson(Map<String, dynamic> json) => _$SizeFromJson(json);
 
-@override final  String? id;
-@override final  String? label;
+@override final  dynamic id;
+@override final  dynamic label;
 @override final  int? stock;
 
 /// Create a copy of Size
@@ -1686,12 +1712,12 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Size&&(identical(other.id, id) || other.id == id)&&(identical(other.label, label) || other.label == label)&&(identical(other.stock, stock) || other.stock == stock));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Size&&const DeepCollectionEquality().equals(other.id, id)&&const DeepCollectionEquality().equals(other.label, label)&&(identical(other.stock, stock) || other.stock == stock));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,label,stock);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(id),const DeepCollectionEquality().hash(label),stock);
 
 @override
 String toString() {
@@ -1706,7 +1732,7 @@ abstract mixin class _$SizeCopyWith<$Res> implements $SizeCopyWith<$Res> {
   factory _$SizeCopyWith(_Size value, $Res Function(_Size) _then) = __$SizeCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String? label, int? stock
+ dynamic id, dynamic label, int? stock
 });
 
 
@@ -1726,8 +1752,277 @@ class __$SizeCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? label = freezed,Object? stock = freezed,}) {
   return _then(_Size(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
-as String?,stock: freezed == stock ? _self.stock : stock // ignore: cast_nullable_to_non_nullable
+as dynamic,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+as dynamic,stock: freezed == stock ? _self.stock : stock // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$Pagination {
+
+ int? get currentPage; int? get nextPageNum; int? get totalPages;
+/// Create a copy of Pagination
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PaginationCopyWith<Pagination> get copyWith => _$PaginationCopyWithImpl<Pagination>(this as Pagination, _$identity);
+
+  /// Serializes this Pagination to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Pagination&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.nextPageNum, nextPageNum) || other.nextPageNum == nextPageNum)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,currentPage,nextPageNum,totalPages);
+
+@override
+String toString() {
+  return 'Pagination(currentPage: $currentPage, nextPageNum: $nextPageNum, totalPages: $totalPages)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $PaginationCopyWith<$Res>  {
+  factory $PaginationCopyWith(Pagination value, $Res Function(Pagination) _then) = _$PaginationCopyWithImpl;
+@useResult
+$Res call({
+ int? currentPage, int? nextPageNum, int? totalPages
+});
+
+
+
+
+}
+/// @nodoc
+class _$PaginationCopyWithImpl<$Res>
+    implements $PaginationCopyWith<$Res> {
+  _$PaginationCopyWithImpl(this._self, this._then);
+
+  final Pagination _self;
+  final $Res Function(Pagination) _then;
+
+/// Create a copy of Pagination
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? currentPage = freezed,Object? nextPageNum = freezed,Object? totalPages = freezed,}) {
+  return _then(_self.copyWith(
+currentPage: freezed == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
+as int?,nextPageNum: freezed == nextPageNum ? _self.nextPageNum : nextPageNum // ignore: cast_nullable_to_non_nullable
+as int?,totalPages: freezed == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [Pagination].
+extension PaginationPatterns on Pagination {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Pagination value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Pagination() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Pagination value)  $default,){
+final _that = this;
+switch (_that) {
+case _Pagination():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Pagination value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Pagination() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? currentPage,  int? nextPageNum,  int? totalPages)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Pagination() when $default != null:
+return $default(_that.currentPage,_that.nextPageNum,_that.totalPages);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? currentPage,  int? nextPageNum,  int? totalPages)  $default,) {final _that = this;
+switch (_that) {
+case _Pagination():
+return $default(_that.currentPage,_that.nextPageNum,_that.totalPages);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? currentPage,  int? nextPageNum,  int? totalPages)?  $default,) {final _that = this;
+switch (_that) {
+case _Pagination() when $default != null:
+return $default(_that.currentPage,_that.nextPageNum,_that.totalPages);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _Pagination implements Pagination {
+  const _Pagination({this.currentPage, this.nextPageNum, this.totalPages});
+  factory _Pagination.fromJson(Map<String, dynamic> json) => _$PaginationFromJson(json);
+
+@override final  int? currentPage;
+@override final  int? nextPageNum;
+@override final  int? totalPages;
+
+/// Create a copy of Pagination
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PaginationCopyWith<_Pagination> get copyWith => __$PaginationCopyWithImpl<_Pagination>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$PaginationToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Pagination&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.nextPageNum, nextPageNum) || other.nextPageNum == nextPageNum)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,currentPage,nextPageNum,totalPages);
+
+@override
+String toString() {
+  return 'Pagination(currentPage: $currentPage, nextPageNum: $nextPageNum, totalPages: $totalPages)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PaginationCopyWith<$Res> implements $PaginationCopyWith<$Res> {
+  factory _$PaginationCopyWith(_Pagination value, $Res Function(_Pagination) _then) = __$PaginationCopyWithImpl;
+@override @useResult
+$Res call({
+ int? currentPage, int? nextPageNum, int? totalPages
+});
+
+
+
+
+}
+/// @nodoc
+class __$PaginationCopyWithImpl<$Res>
+    implements _$PaginationCopyWith<$Res> {
+  __$PaginationCopyWithImpl(this._self, this._then);
+
+  final _Pagination _self;
+  final $Res Function(_Pagination) _then;
+
+/// Create a copy of Pagination
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? currentPage = freezed,Object? nextPageNum = freezed,Object? totalPages = freezed,}) {
+  return _then(_Pagination(
+currentPage: freezed == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
+as int?,nextPageNum: freezed == nextPageNum ? _self.nextPageNum : nextPageNum // ignore: cast_nullable_to_non_nullable
+as int?,totalPages: freezed == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
 as int?,
   ));
 }
