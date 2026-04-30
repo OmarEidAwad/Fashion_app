@@ -22,7 +22,7 @@ class _ModelDetailesScreenState extends State<ModelDetailesScreen> {
     super.initState();
     pageController = PageController(
       initialPage: currentPageIndex,
-      viewportFraction: .55,
+      viewportFraction: .6,
     );
   }
 
@@ -34,7 +34,7 @@ class _ModelDetailesScreenState extends State<ModelDetailesScreen> {
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(kToolbarHeight),
-          child: CustomAppBar(title: "Men"),
+          child: CustomAppBar(title:"" ),
         ),
 
         body: Stack(
@@ -57,21 +57,21 @@ class _ModelDetailesScreenState extends State<ModelDetailesScreen> {
                       });
                     },
                     itemBuilder: (context, index) {
-                      final scale = index == currentPageIndex ? 1.0 : 0.75;
+                      final scale = index == currentPageIndex ? 1.0 : 0.88;
 
                       return Transform.scale(
                         scale: scale,
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8.w),
+                          padding: EdgeInsets.symmetric(horizontal: 4.w),
                           child: Stack(
                             children: [
-                              Positioned(
-                                left: 0,
-                                right: 0,
-                                top: 500.h * (1 - (sheetSize - 0.05)),
-                                child: Image.asset("assets/images/shadow.png",
-                                    fit: BoxFit.contain),
-                              ),
+                              // Positioned(
+                              //   left: 0,
+                              //   right: 0,
+                              //   top: 500.h * (1 - (sheetSize - 0.05)),
+                              //   child: Image.asset("assets/images/shadow.png",
+                              //       fit: BoxFit.contain),
+                              // ),
                               Positioned.fill(
                                 child: Image.network(
                                   widget
@@ -79,7 +79,7 @@ class _ModelDetailesScreenState extends State<ModelDetailesScreen> {
                                           .allModelsModel[index]
                                           .modelImage ??
                                       'https://via.placeholder.com/150',
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.contain,
                                 ),
                               ),
                             ],

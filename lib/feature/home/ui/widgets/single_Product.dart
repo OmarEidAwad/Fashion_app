@@ -25,11 +25,11 @@ class singleProduct extends StatelessWidget {
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Color(0xffECECEC),
+              color: Color(0xffDADADA),
               borderRadius: BorderRadius.all(Radius.circular(4)),
             ),
             child: Image.network(
-              modelDetails.modelImage ?? 'https://via.placeholder.com/150',
+              modelDetails.modelImage ?? 'https://via.placeholder.com/150',fit: BoxFit.fill,
               // fit: BoxFit.contain,
             ),
           ),

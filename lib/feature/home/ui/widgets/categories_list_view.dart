@@ -12,12 +12,12 @@ class CategoriesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     List<CategoriesModel> categoriesData = [
       CategoriesModel(
-        imageAsset: "assets/images/category/Deals.png",
+        imageAsset: "assets/images/category/Health.png",
         categoryName: "Sports",
-        categoryId: "sportswear_women_activity_hiking_accessories",
+        categoryId: "sportswear_women",
       ),
       CategoriesModel(
-        imageAsset: "assets/images/category/Health.png",
+        imageAsset: "assets/images/category/Deals.png",
         categoryName: "Beauty",
         categoryId: "beauty_newarrivals_all",
       ),
